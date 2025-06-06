@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', {
     username: '', // Можно добавить дополнительные данные
   }),
   actions: {
-    setTelegramId(id: number) {
+    setTelegramId(id: number | null) {
       this.telegramId = id // Устанавливаем id пользователя
     },
     setUsername(name: string) {
