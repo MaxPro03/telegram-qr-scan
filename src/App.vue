@@ -2,10 +2,6 @@
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
 import { useTelegram } from '@/utils/composable/useTelegram.ts'
-import { useApi } from '@/utils/composable/useApi'
-import { useGlobalStore } from './stores/global'
-
-// const globalStore = useGlobalStore()
 
 const { tg } = useTelegram()
 
