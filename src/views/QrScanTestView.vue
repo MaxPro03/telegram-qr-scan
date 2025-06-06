@@ -44,8 +44,31 @@ async function showScanQrPopup(linksOnly) {
   )
 }
 
+const sendSomeCode = async () => {
+  try {
+    const response = await fetch(`https://tl.gogomarket.uz/telegram-admin-bot/check-registration`, {
+      method: 'POST',
+      body: JSON.stringify({
+        qrCode: 213,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    if (!response.ok) {
+      tg.showAlert(response.data.message)
+    }
+    tg.showAlert(response.data.message)
+    console.log(response)
+    return true
+  } catch (error) {
+    tg.showAlert(error.message)
+  }
+}
 onMounted(() => {
   tg.ready()
+  sendSomeCode()
 })
 </script>
 
