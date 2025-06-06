@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import { ref } from 'vue'
-import { useTelegram } from '@/utils/composable/useTelegram.ts'
+import { useTelegram } from '@/utils/composable/useTelegram'
 
 const { tg } = useTelegram()
 

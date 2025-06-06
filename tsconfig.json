@@ -1,5 +1,18 @@
 {
   "files": [],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["vite/client"], // или "node" если ты не используешь Vite
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "module": "esnext",
+    "target": "esnext"
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

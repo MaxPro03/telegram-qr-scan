@@ -27,19 +27,21 @@ async function showScanQrPopup(linksOnly) {
         }
 
         try {
-          const response = await fetch(`some api`, {
+          const response = await fetch(`https://tl.gogomarket.uz/telegram-admin-bot/check-registration`, {
             method: 'POST',
+            body: {
+              qrCode: text,
+            },
             headers: {
               'Content-Type': 'application/json',
               'Accept-Language': 'ru',
-              Authorization: 'Basic Z29nb21hcmtldDoxMjM0NTYhQQ==',
             },
           })
 
           if (!response.ok) {
-            tg.showAlert('Неверный QR')
+            tg.showAlert(response.data.data)
           }
-          tg.showAlert(' Успешнно авторизован')
+          tg.showAlert(response.data.data)
           return true
         } catch (error) {
           tg.showAlert(error.message)
