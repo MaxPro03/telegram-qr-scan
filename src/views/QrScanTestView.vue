@@ -10,7 +10,6 @@ import { useTelegram } from '@/utils/composable/useTelegram'
 
 const { tg } = useTelegram()
 const scannedData = ref('')
-const tgId = ref(7454281928)
 
 async function showScanQrPopup(linksOnly) {
   Telegram.WebApp.showScanQrPopup(
@@ -21,27 +20,21 @@ async function showScanQrPopup(linksOnly) {
       if (linksOnly) {
         scannedData.value = text.toString().toLowerCase()
 
-        if (route.params.orderId != text) {
-          tg.showAlert('Ошибка')
-          return
-        }
-
         try {
           const response = await fetch(`https://tl.gogomarket.uz/telegram-admin-bot/check-registration`, {
             method: 'POST',
-            body: {
-              qrCode: text,
-            },
+            body: JSON.stringify({
+              qrCode: scannedData.value,
+            }),
             headers: {
               'Content-Type': 'application/json',
-              'Accept-Language': 'ru',
             },
           })
 
           if (!response.ok) {
-            tg.showAlert(response.data.data)
+            tg.showAlert(response.data.message)
           }
-          tg.showAlert(response.data.data)
+          tg.showAlert(response.data.message)
           return true
         } catch (error) {
           tg.showAlert(error.message)
@@ -53,19 +46,19 @@ async function showScanQrPopup(linksOnly) {
 
 onMounted(() => {
   tg.ready()
-  tg?.showScanQrPopup()
 })
 </script>
 
 <style scoped>
 .container {
-  margin: auto;
+  margin-top: auto;
   text-align: center;
   padding: 20px;
 }
 
 button {
   padding: 10px 20px;
+  width: 100%;
   font-size: 16px;
   cursor: pointer;
   background-color: #0088cc;

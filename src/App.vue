@@ -12,18 +12,13 @@ const chatId = ref(tg?.initDataUnsafe?.chat?.id)
 
 <template>
   <div id="app" class="scroll-container">
-    <div>
-      <p>User ID: {{ userId }}</p>
-      <p>Username: {{ username }}</p>
-      <p v-if="chatId">Chat ID: {{ chatId }}</p>
-      <p v-else>Chat ID не доступен</p>
-    </div>
     <RouterView />
   </div>
 </template>
 
 <style scoped>
 .scroll-container {
-  height: 100dvh; /* Высота окна */
+  height: 100dvh;
+  display: grid;
 }
 </style>
